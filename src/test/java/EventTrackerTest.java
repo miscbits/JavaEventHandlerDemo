@@ -10,6 +10,10 @@ public class EventTrackerTest {
     public void instantiate() {
         EventTracker et = new EventTracker();
         Assert.assertNotNull(et);
+
+        et = new EventTracker(new ArrayList<>());
+
+        Assert.assertNotNull(et);
     }
 
     @Test
@@ -28,7 +32,21 @@ public class EventTrackerTest {
         testList.add("test");
         EventTracker eventTracker = new EventTracker(testList);
 
-        Assert.assertTrue(eventTracker.has("test"));
+        boolean trackerHasTest = eventTracker.has("test");
+
+        Assert.assertTrue(trackerHasTest);
+    }
+
+    @Test
+    public void has2() {
+        List<String> testList = new ArrayList<>();
+        testList.add("test");
+        testList.add("folcrum");
+        EventTracker eventTracker = new EventTracker(testList);
+
+        boolean trackerHasTest = eventTracker.has("folcrum");
+
+        Assert.assertTrue(trackerHasTest);
     }
 
     @Test
@@ -39,7 +57,9 @@ public class EventTrackerTest {
 
         eventTracker.handle("test", () -> {});
 
-        Assert.assertFalse(eventTracker.has("test"));
+        boolean trackerHasTest = eventTracker.has("test");
+
+        Assert.assertFalse(trackerHasTest);
     }
 
     @Test
