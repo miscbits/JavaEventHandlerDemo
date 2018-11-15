@@ -2,21 +2,29 @@ public class EventListener extends Thread {
 
     private String messageToListenFor;
     private String messageToReplyWith;
-    private EventTracker eventTracker;
+    private Tracker eventTracker;
 
-    public EventListener(String message, String reply, EventTracker tracker) {
+    public EventListener(String message, String reply) {
+        this.messageToListenFor = message;
+        this.messageToReplyWith = reply;
+        this.eventTracker = EventTracker.getInstance();
+    }
+
+    public EventListener(String message, String reply, Tracker tracker) {
         this.messageToListenFor = message;
         this.messageToReplyWith = reply;
         this.eventTracker = tracker;
     }
 
     public void run() {
-        while (!readToQuit())
-            if (shouldReply())
+        while (!readyToQuit()) {
+            if (shouldReply()) {
                 reply();
+            }
+        }
     }
 
-    public boolean readToQuit() {
+    public boolean readyToQuit() {
         return eventTracker.has("quit");
     }
 

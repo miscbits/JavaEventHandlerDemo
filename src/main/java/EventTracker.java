@@ -1,12 +1,18 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class EventTracker {
+public class EventTracker implements Tracker {
 
-    private List<String> tracker;
+    private static EventTracker INSTANCE = new EventTracker();
 
-    public EventTracker() {
+    public List<String> tracker;
+
+    private EventTracker() {
         this.tracker = new LinkedList<>();
+    }
+
+    public static EventTracker getInstance() {
+        return INSTANCE;
     }
 
     public EventTracker(List<String> tracker) {

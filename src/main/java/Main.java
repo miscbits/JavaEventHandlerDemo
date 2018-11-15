@@ -4,22 +4,21 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) {
-        EventTracker tracker = new EventTracker();
+        EventListener appleListener = new EventListener("apple", "I love macbooks");
+        EventListener javaListener = new EventListener("java", "I could go for some coffee");
 
-        Stream.of(
-            new EventListener("apple", "I love macbooks", tracker),
-            new EventListener("java", "I could go for some coffee", tracker)
-        ).forEach(Thread::start);
-
+        appleListener.start();
+        javaListener.start();
 
         Scanner in = new Scanner(System.in);
         Stream<String> inStream = Stream.generate(in::nextLine);
 
-        boolean status = inStream.anyMatch((input) -> Main.passValue(input, tracker));
+        boolean status = inStream.anyMatch(Main::passValue);
+        in.close();
     }
 
-    private static boolean passValue(String input, EventTracker tracker) {
-        tracker.push(input);
+    private static boolean passValue(String input) {
+        EventTracker.getInstance().push(input);
         return input.equals("quit");
     }
 

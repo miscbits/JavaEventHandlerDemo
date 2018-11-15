@@ -1,8 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class EventListenerTest {
 
     @Test
@@ -10,7 +8,7 @@ public class EventListenerTest {
         TrackerMock tracker = new TrackerMock();
         EventListener el = new EventListener("test", "reply", tracker);
 
-        Assert.assertTrue(el.readToQuit());
+        Assert.assertTrue(el.readyToQuit());
     }
 
     @Test
@@ -31,7 +29,7 @@ public class EventListenerTest {
         Assert.assertTrue(tracker.eventWasHandled);
     }
 
-    class TrackerMock extends EventTracker {
+    class TrackerMock implements Tracker {
 
         public boolean itemWasPushed;
         public boolean eventWasHandled;

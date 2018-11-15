@@ -8,10 +8,7 @@ public class EventTrackerTest {
 
     @Test
     public void instantiate() {
-        EventTracker et = new EventTracker();
-        Assert.assertNotNull(et);
-
-        et = new EventTracker(new ArrayList<>());
+        EventTracker et = new EventTracker(new ArrayList<>());
 
         Assert.assertNotNull(et);
     }
