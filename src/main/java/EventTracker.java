@@ -32,7 +32,7 @@ public class EventTracker implements Tracker {
     }
 
     public void handle(String message, EventHandler e) {
-        e.handle();
         tracker.remove(message);
+        e.handle();
     }
 }

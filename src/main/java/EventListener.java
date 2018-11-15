@@ -18,9 +18,6 @@ public class EventListener extends Thread {
 
     public void run() {
         while (!readyToQuit()) {
-            if (eventTracker.tracker().size() > 0) {
-                System.out.println(eventTracker.tracker().toString());
-            }
             if (shouldReply()) {
                 reply();
             }
