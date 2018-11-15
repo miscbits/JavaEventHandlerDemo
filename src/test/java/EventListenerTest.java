@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+
 public class EventListenerTest {
 
     @Test
@@ -33,6 +35,12 @@ public class EventListenerTest {
 
         public boolean itemWasPushed;
         public boolean eventWasHandled;
+
+        @Override
+        public List<String> tracker() {
+            return null;
+        }
+
         @Override
         public void push(String message) {
             itemWasPushed = true;

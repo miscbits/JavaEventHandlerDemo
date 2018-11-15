@@ -5,10 +5,14 @@ public class EventTracker implements Tracker {
 
     private static EventTracker INSTANCE = new EventTracker();
 
-    public List<String> tracker;
+    private List<String> tracker;
 
     private EventTracker() {
         this.tracker = new LinkedList<>();
+    }
+
+    public List<String> tracker() {
+        return tracker;
     }
 
     public static EventTracker getInstance() {

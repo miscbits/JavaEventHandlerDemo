@@ -1,4 +1,8 @@
+import java.util.List;
+
 public interface Tracker {
+
+    List<String> tracker();
 
     void push(String message);
 
