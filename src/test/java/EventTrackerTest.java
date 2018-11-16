@@ -25,6 +25,18 @@ public class EventTrackerTest {
     }
 
     @Test
+    public void tracker() {
+        HashMap<String, Integer> testList = new HashMap<>();
+
+        EventTracker eventTracker = new EventTracker(testList);
+
+        eventTracker.push("test");
+
+        Assert.assertEquals(testList, eventTracker.tracker());
+
+    }
+
+    @Test
     public void has() {
         HashMap<String, Integer> testList = new HashMap<>();
         testList.put("test", 1);
