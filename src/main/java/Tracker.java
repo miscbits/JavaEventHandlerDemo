@@ -1,8 +1,8 @@
-import java.util.List;
+import java.util.Map;
 
 public interface Tracker {
 
-    List<String> tracker();
+    Map<String, Integer> tracker();
 
     void push(String message);
 

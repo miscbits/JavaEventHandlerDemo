@@ -1,38 +1,38 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EventTracker implements Tracker {
 
     private static EventTracker INSTANCE = new EventTracker();
 
-    private List<String> tracker;
+    private Map<String, Integer> tracker;
 
     private EventTracker() {
-        this.tracker = new LinkedList<>();
+        this.tracker = new HashMap<>();
     }
 
-    public List<String> tracker() {
+    synchronized public Map<String, Integer> tracker() {
         return tracker;
     }
 
-    public static EventTracker getInstance() {
+    synchronized public static EventTracker getInstance() {
         return INSTANCE;
     }
 
-    public EventTracker(List<String> tracker) {
+    public EventTracker(Map<String, Integer> tracker) {
         this.tracker = tracker;
     }
 
-    public void push(String message) {
-        tracker.add(message);
+    synchronized public void push(String message) {
+        tracker.put(message, tracker.getOrDefault(message, 0) + 1);
     }
 
-    public boolean has(String message) {
-        return tracker.indexOf(message) != -1;
+    synchronized public boolean has(String message) {
+        return tracker.getOrDefault(message, 0) != 0;
     }
 
-    public void handle(String message, EventHandler e) {
-        tracker.remove(message);
+    synchronized public void handle(String message, EventHandler e) {
+        tracker.put(message, tracker.getOrDefault(message, 1) - 1);
         e.handle();
     }
 }

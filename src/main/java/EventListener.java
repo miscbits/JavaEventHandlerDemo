@@ -17,11 +17,9 @@ public class EventListener extends Thread {
     }
 
     public void run() {
-        while (!readyToQuit()) {
-            if (shouldReply()) {
+        while (!readyToQuit())
+            if (shouldReply())
                 reply();
-            }
-        }
     }
 
     public boolean readyToQuit() {

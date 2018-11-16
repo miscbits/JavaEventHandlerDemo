@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class EventListenerTest {
 
@@ -37,7 +38,7 @@ public class EventListenerTest {
         public boolean eventWasHandled;
 
         @Override
-        public List<String> tracker() {
+        public Map<String, Integer> tracker() {
             return null;
         }
 
