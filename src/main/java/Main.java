@@ -4,17 +4,14 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) {
-        EventListener appleListener = new EventListener("apple", "I love macbooks");
-        EventListener javaListener = new EventListener("java", "I could go for some coffee");
+        Stream.of(
+            new EventListener("apple", "I love macbooks"),
+            new EventListener("java", "I could go for some coffee")
+        ).forEach(Thread::start);
 
-        appleListener.start();
-        javaListener.start();
-
-        Scanner in = new Scanner(System.in);
-        Stream<String> inStream = Stream.generate(in::nextLine);
+        Stream<String> inStream = Stream.generate(new Scanner(System.in)::nextLine);
 
         boolean status = inStream.anyMatch(Main::passValue);
-        in.close();
     }
 
     private static boolean passValue(String input) {
