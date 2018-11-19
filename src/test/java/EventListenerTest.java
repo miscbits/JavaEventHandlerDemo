@@ -7,6 +7,13 @@ import java.util.Map;
 public class EventListenerTest {
 
     @Test
+    public void instantiation() {
+        EventListener el = new EventListener("test", "reply");
+
+        Assert.assertNotNull(el);
+    }
+
+    @Test
     public void readToQuit() {
         TrackerMock tracker = new TrackerMock();
         EventListener el = new EventListener("test", "reply", tracker);

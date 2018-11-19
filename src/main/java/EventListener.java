@@ -5,9 +5,7 @@ public class EventListener extends Thread {
     private Tracker eventTracker;
 
     public EventListener(String message, String reply) {
-        this.messageToListenFor = message;
-        this.messageToReplyWith = reply;
-        this.eventTracker = EventTracker.getInstance();
+        this(message, reply, EventTracker.getInstance());
     }
 
     public EventListener(String message, String reply, Tracker tracker) {
@@ -31,7 +29,7 @@ public class EventListener extends Thread {
     }
 
     public void reply() {
-        eventTracker.handle(messageToListenFor,
-                () -> System.out.println(messageToReplyWith));
+        EventHandler e = () -> System.out.println(messageToReplyWith);
+        eventTracker.handle(messageToListenFor, e);
     }
 }
